@@ -1,0 +1,45 @@
+BMmanager
+
+	idList : Map<String,String>
+		아이디, 비밀번호 map은 키는 아이디로해서 중복이 안되고, value는 중복이 허용이 되기때문에 	
+		아이디와 비밀번호를 저장하는 용도로 사용 
+	userInfoSet : HashSet<userInfo>
+		userInfo객체를 담기 위해 사용하였고, 같은사람이면 회원가입이 안되게 하기위해 사용하였음.
+		UserInfo객체는 같은이름에 같은 주민등록번호를 가진사람은 같은 사람으로 판별되게끔 			
+		equals와 hashcode를 오버라이딩 하였음.
+
+SystemMenu
+	foodMenuSet : Set<Food>
+		등록된 음식을 저장하기 위한 Set이고, 음식이름과, 식당명, 식당주소가 같으면 같은 		
+		음식으로 판별하여 등록이 안되게끔 되어있음. 
+	shopList : Set<Shop>
+		음식과 마찬가지로 식당이름이 같고 주소가 같으면 식당등록이 안되게끔 하기 위해서
+		Set으로 작성하였음.
+		
+Shop
+	reviewList : ArrayList<Review>
+		사용자가 해당 식당에 리뷰를 작성하면 그 식당의 reviewList에 추가되도록 작성.
+
+UserInfo
+	cart : ArrayList<Food>
+		사용자가 메뉴를 선정하면 장바구니에 담아뒀다가 여러음식을 한번에 결재할 수 
+		있도록 하기위해 작성 메뉴를 선정하면 해당음식이 cart에 추가되도록 작성함.
+	orderList : ArrayList
+		사용자가 최종결제를 했을 시 주문내역이 사용자 정보에 저장되도록 하기 위해 작성.
+	reivewList : ArrayList
+		사용자가 주문은 1번 해놓고 리뷰를 여러번 쓰지 못하게 하기 위해서 작성.
+		리뷰 작성이 완료 되면 여기에 들어있는 주문내역은 삭제되어 더이상 리뷰를 작성할 수 없음.
+	myReview :ArrayList
+		내가 작성한 리뷰만 따로 보고싶을 때 사용자가 볼 수 있도록 하기 위해 Review객체를 담을
+		ArrayList를 만들었음.
+
+UserMenu
+	foodMenuSet : Set<Food>
+		관리자 메뉴에서 등록한 음식들은 파일에 저장되는데 사용자가 메뉴를 선택하거나 볼수 있도록
+		하기위해 파일을 불러와서 대입시킴.
+		사실상 관리자메뉴에 있는 변수를 그대로 들고와도 되지만 코드작성할 때 편의를 위해 UserMenu클래스에
+		새로 선언해두었음.
+	shopList : Set<Shop>
+		관리자 메뉴에서 등록한 식당을 담을 Set.
+		foodMenuSet과 마찬가지로 사용자가 음식을 주문할 식당을 선택하고 리뷰를 남기거나 할 때 사용하기 위해
+		만들었고, 편의를 위해 UserMenu클래스에 새로 선언해두었음.
